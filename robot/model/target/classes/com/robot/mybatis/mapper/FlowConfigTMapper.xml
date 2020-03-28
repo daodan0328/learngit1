@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.FlowConfigTMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.FlowConfigT">
+    <result column="id" jdbcType="DECIMAL" property="id" />
+    <result column="flow_id" jdbcType="DECIMAL" property="flowId" />
+    <result column="subflow_id" jdbcType="DECIMAL" property="subflowId" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.robot.pojo.FlowConfigTWithBLOBs">
+    <result column="view_content" jdbcType="LONGVARCHAR" property="viewContent" />
+    <result column="data_content" jdbcType="LONGVARCHAR" property="dataContent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, flow_id, subflow_id, create_by, create_time, update_by, update_time, remove
+  </sql>
+  <sql id="Blob_Column_List">
+    view_content, data_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.robot.pojo.FlowConfigTExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_config_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.robot.pojo.FlowConfigTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flow_config_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.FlowConfigTExample">
+    delete from flow_config_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.FlowConfigTWithBLOBs">
+    insert into flow_config_t (id, flow_id, subflow_id, 
+      create_by, create_time, update_by, 
+      update_time, remove, view_content, 
+      data_content)
+    values (#{id,jdbcType=DECIMAL}, #{flowId,jdbcType=DECIMAL}, #{subflowId,jdbcType=DECIMAL}, 
+      #{createBy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=DECIMAL}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remove,jdbcType=BIT}, #{viewContent,jdbcType=LONGVARCHAR}, 
+      #{dataContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.FlowConfigTWithBLOBs">
+    insert into flow_config_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="flowId != null">
+        flow_id,
+      </if>
+      <if test="subflowId != null">
+        subflow_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+      <if test="viewContent != null">
+        view_content,
+      </if>
+      <if test="dataContent != null">
+        data_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="flowId != null">
+        #{flowId,jdbcType=DECIMAL},
+      </if>
+      <if test="subflowId != null">
+        #{subflowId,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+      <if test="viewContent != null">
+        #{viewContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dataContent != null">
+        #{dataContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.FlowConfigTExample" resultType="java.lang.Long">
+    select count(*) from flow_config_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update flow_config_t
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.flowId != null">
+        flow_id = #{record.flowId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subflowId != null">
+        subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+      <if test="record.viewContent != null">
+        view_content = #{record.viewContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.dataContent != null">
+        data_content = #{record.dataContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update flow_config_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      flow_id = #{record.flowId,jdbcType=DECIMAL},
+      subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT},
+      view_content = #{record.viewContent,jdbcType=LONGVARCHAR},
+      data_content = #{record.dataContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update flow_config_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      flow_id = #{record.flowId,jdbcType=DECIMAL},
+      subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

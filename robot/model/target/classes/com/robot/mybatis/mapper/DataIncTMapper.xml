@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.DataIncTMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.DataIncT">
+    <result column="id" jdbcType="DECIMAL" property="id" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="data_id" jdbcType="DECIMAL" property="dataId" />
+    <result column="data_flag" jdbcType="VARCHAR" property="dataFlag" />
+    <result column="syn_flag" jdbcType="BIT" property="synFlag" />
+    <result column="server_addr" jdbcType="VARCHAR" property="serverAddr" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="last_syn_time" jdbcType="TIMESTAMP" property="lastSynTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="syn_result" jdbcType="VARCHAR" property="synResult" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, table_name, data_id, data_flag, syn_flag, server_addr, create_by, update_by, 
+    last_syn_time, create_time, update_time, syn_result, remove
+  </sql>
+  <select id="selectByExample" parameterType="com.robot.pojo.DataIncTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from data_inc_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.DataIncTExample">
+    delete from data_inc_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.DataIncT">
+    insert into data_inc_t (id, table_name, data_id, 
+      data_flag, syn_flag, server_addr, 
+      create_by, update_by, last_syn_time, 
+      create_time, update_time, syn_result, 
+      remove)
+    values (#{id,jdbcType=DECIMAL}, #{tableName,jdbcType=VARCHAR}, #{dataId,jdbcType=DECIMAL}, 
+      #{dataFlag,jdbcType=VARCHAR}, #{synFlag,jdbcType=BIT}, #{serverAddr,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=DECIMAL}, #{updateBy,jdbcType=DECIMAL}, #{lastSynTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{synResult,jdbcType=VARCHAR}, 
+      #{remove,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.DataIncT">
+    insert into data_inc_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="dataId != null">
+        data_id,
+      </if>
+      <if test="dataFlag != null">
+        data_flag,
+      </if>
+      <if test="synFlag != null">
+        syn_flag,
+      </if>
+      <if test="serverAddr != null">
+        server_addr,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="lastSynTime != null">
+        last_syn_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="synResult != null">
+        syn_result,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataId != null">
+        #{dataId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataFlag != null">
+        #{dataFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="synFlag != null">
+        #{synFlag,jdbcType=BIT},
+      </if>
+      <if test="serverAddr != null">
+        #{serverAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="lastSynTime != null">
+        #{lastSynTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synResult != null">
+        #{synResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.DataIncTExample" resultType="java.lang.Long">
+    select count(*) from data_inc_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update data_inc_t
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tableName != null">
+        table_name = #{record.tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataId != null">
+        data_id = #{record.dataId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dataFlag != null">
+        data_flag = #{record.dataFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.synFlag != null">
+        syn_flag = #{record.synFlag,jdbcType=BIT},
+      </if>
+      <if test="record.serverAddr != null">
+        server_addr = #{record.serverAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastSynTime != null">
+        last_syn_time = #{record.lastSynTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.synResult != null">
+        syn_result = #{record.synResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update data_inc_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      table_name = #{record.tableName,jdbcType=VARCHAR},
+      data_id = #{record.dataId,jdbcType=DECIMAL},
+      data_flag = #{record.dataFlag,jdbcType=VARCHAR},
+      syn_flag = #{record.synFlag,jdbcType=BIT},
+      server_addr = #{record.serverAddr,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      last_syn_time = #{record.lastSynTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      syn_result = #{record.synResult,jdbcType=VARCHAR},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

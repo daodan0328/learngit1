@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.QuestionReuseRMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.QuestionReuseR">
+    <result column="id" jdbcType="DECIMAL" property="id" />
+    <result column="central_question_id" jdbcType="DECIMAL" property="centralQuestionId" />
+    <result column="central_question_name" jdbcType="VARCHAR" property="centralQuestionName" />
+    <result column="reuse_central_question_id" jdbcType="DECIMAL" property="reuseCentralQuestionId" />
+    <result column="reuse_central_question_name" jdbcType="VARCHAR" property="reuseCentralQuestionName" />
+    <result column="business_word_id" jdbcType="DECIMAL" property="businessWordId" />
+    <result column="relevancy" jdbcType="DECIMAL" property="relevancy" />
+    <result column="enabled_status" jdbcType="BIT" property="enabledStatus" />
+    <result column="application_id" jdbcType="DECIMAL" property="applicationId" />
+    <result column="application_code" jdbcType="VARCHAR" property="applicationCode" />
+    <result column="channel_code" jdbcType="VARCHAR" property="channelCode" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, central_question_id, central_question_name, reuse_central_question_id, reuse_central_question_name, 
+    business_word_id, relevancy, enabled_status, application_id, application_code, channel_code, 
+    city_code, create_by, create_time, update_by, update_time, remove
+  </sql>
+  <select id="selectByExample" parameterType="com.robot.pojo.QuestionReuseRExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_reuse_r
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.QuestionReuseRExample">
+    delete from question_reuse_r
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.QuestionReuseR">
+    insert into question_reuse_r (id, central_question_id, central_question_name, 
+      reuse_central_question_id, reuse_central_question_name, 
+      business_word_id, relevancy, enabled_status, 
+      application_id, application_code, channel_code, 
+      city_code, create_by, create_time, 
+      update_by, update_time, remove
+      )
+    values (#{id,jdbcType=DECIMAL}, #{centralQuestionId,jdbcType=DECIMAL}, #{centralQuestionName,jdbcType=VARCHAR}, 
+      #{reuseCentralQuestionId,jdbcType=DECIMAL}, #{reuseCentralQuestionName,jdbcType=VARCHAR}, 
+      #{businessWordId,jdbcType=DECIMAL}, #{relevancy,jdbcType=DECIMAL}, #{enabledStatus,jdbcType=BIT}, 
+      #{applicationId,jdbcType=DECIMAL}, #{applicationCode,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{createBy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{remove,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.QuestionReuseR">
+    insert into question_reuse_r
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="centralQuestionId != null">
+        central_question_id,
+      </if>
+      <if test="centralQuestionName != null">
+        central_question_name,
+      </if>
+      <if test="reuseCentralQuestionId != null">
+        reuse_central_question_id,
+      </if>
+      <if test="reuseCentralQuestionName != null">
+        reuse_central_question_name,
+      </if>
+      <if test="businessWordId != null">
+        business_word_id,
+      </if>
+      <if test="relevancy != null">
+        relevancy,
+      </if>
+      <if test="enabledStatus != null">
+        enabled_status,
+      </if>
+      <if test="applicationId != null">
+        application_id,
+      </if>
+      <if test="applicationCode != null">
+        application_code,
+      </if>
+      <if test="channelCode != null">
+        channel_code,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="centralQuestionId != null">
+        #{centralQuestionId,jdbcType=DECIMAL},
+      </if>
+      <if test="centralQuestionName != null">
+        #{centralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="reuseCentralQuestionId != null">
+        #{reuseCentralQuestionId,jdbcType=DECIMAL},
+      </if>
+      <if test="reuseCentralQuestionName != null">
+        #{reuseCentralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessWordId != null">
+        #{businessWordId,jdbcType=DECIMAL},
+      </if>
+      <if test="relevancy != null">
+        #{relevancy,jdbcType=DECIMAL},
+      </if>
+      <if test="enabledStatus != null">
+        #{enabledStatus,jdbcType=BIT},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=DECIMAL},
+      </if>
+      <if test="applicationCode != null">
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.QuestionReuseRExample" resultType="java.lang.Long">
+    select count(*) from question_reuse_r
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update question_reuse_r
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.centralQuestionId != null">
+        central_question_id = #{record.centralQuestionId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.centralQuestionName != null">
+        central_question_name = #{record.centralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reuseCentralQuestionId != null">
+        reuse_central_question_id = #{record.reuseCentralQuestionId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reuseCentralQuestionName != null">
+        reuse_central_question_name = #{record.reuseCentralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessWordId != null">
+        business_word_id = #{record.businessWordId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.relevancy != null">
+        relevancy = #{record.relevancy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.enabledStatus != null">
+        enabled_status = #{record.enabledStatus,jdbcType=BIT},
+      </if>
+      <if test="record.applicationId != null">
+        application_id = #{record.applicationId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.applicationCode != null">
+        application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelCode != null">
+        channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update question_reuse_r
+    set id = #{record.id,jdbcType=DECIMAL},
+      central_question_id = #{record.centralQuestionId,jdbcType=DECIMAL},
+      central_question_name = #{record.centralQuestionName,jdbcType=VARCHAR},
+      reuse_central_question_id = #{record.reuseCentralQuestionId,jdbcType=DECIMAL},
+      reuse_central_question_name = #{record.reuseCentralQuestionName,jdbcType=VARCHAR},
+      business_word_id = #{record.businessWordId,jdbcType=DECIMAL},
+      relevancy = #{record.relevancy,jdbcType=DECIMAL},
+      enabled_status = #{record.enabledStatus,jdbcType=BIT},
+      application_id = #{record.applicationId,jdbcType=DECIMAL},
+      application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

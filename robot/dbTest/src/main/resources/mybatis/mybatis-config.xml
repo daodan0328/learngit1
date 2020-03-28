@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 指定 MyBatis 数据库配置文件 -->
+    <properties resource="properties/db.properties"/>
+
+
+    <!--    &lt;!&ndash; 指定 MyBatis 所用日志的具体实现 &ndash;&gt;-->
+    <!--    <settings>-->
+    <!--        <setting name="logImpl" value="LOG4J"/>-->
+    <!--    </settings>-->
+
+
+    <!--配置别名-->
+    <typeAliases>
+        <!--给单个类型配置别名-->
+        <!--使用方法，在需要写com.lj.mybatis.pojo.User的地方，直接写user就可以了-->
+        <!--这种方法比较麻烦，需要给每个类型都配置-->
+        <!--<typeAlias type="com.lj.mybatis.pojo.User" alias="user"/>-->
+
+        <!--给整个包配置别名-->
+        <!--使用方法，pojo包下面的类，都可以使用别名了，别名直接写类型就可以饿了，例如，pojo包下的User类，直接写User或者user就可以了-->
+        <!--在pojo包及其子包下的类都能使用，类的头字母大小学都行-->
+        <!--<package name="com.lj.mybatis.pojo"/>-->
+
+    </typeAliases>
+    <environments default="mysql">
+
+        <!-- 环境配置，即连接的数据库。 -->
+        <environment id="mysql">
+
+            <!-- 指定事务管理类型，type="JDBC"指直接简单使用了JDBC的提交和回滚设置 -->
+            <transactionManager type="JDBC"/>
+
+            <!-- dataSource指数据源配置，POOLED是JDBC连接对象的数据源连接池的实现。 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <!--    &lt;!&ndash; 配置分页插件 &ndash;&gt;-->
+    <!--    <plugins>-->
+    <!--        <plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+    <!--        </plugin>-->
+    <!--    </plugins>-->
+
+    <!-- mappers告诉了MyBatis去哪里找持久化类的映射文件 -->
+
+    <mappers>
+        <!--<mapper resource="mybatis/com/lj/mybatis/mapper/TestDBMapper.xml"/>-->
+        <package name="com.robot.mybatis.mapper"/>
+    </mappers>
+</configuration>

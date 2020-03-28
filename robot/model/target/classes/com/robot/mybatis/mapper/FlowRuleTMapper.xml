@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.FlowRuleTMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.FlowRuleT">
+    <result column="id" jdbcType="DECIMAL" property="id" />
+    <result column="subflow_id" jdbcType="DECIMAL" property="subflowId" />
+    <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="node_type" jdbcType="VARCHAR" property="nodeType" />
+    <result column="above_node_id" jdbcType="VARCHAR" property="aboveNodeId" />
+    <result column="flow_condition_1" jdbcType="VARCHAR" property="flowCondition1" />
+    <result column="flow_condition_2" jdbcType="VARCHAR" property="flowCondition2" />
+    <result column="flow_condition_3" jdbcType="VARCHAR" property="flowCondition3" />
+    <result column="flow_condition_4" jdbcType="VARCHAR" property="flowCondition4" />
+    <result column="flow_condition_5" jdbcType="VARCHAR" property="flowCondition5" />
+    <result column="flow_condition_6" jdbcType="VARCHAR" property="flowCondition6" />
+    <result column="flow_condition_7" jdbcType="VARCHAR" property="flowCondition7" />
+    <result column="flow_condition_8" jdbcType="VARCHAR" property="flowCondition8" />
+    <result column="flow_condition_9" jdbcType="VARCHAR" property="flowCondition9" />
+    <result column="flow_condition_10" jdbcType="VARCHAR" property="flowCondition10" />
+    <result column="flow_condition_11" jdbcType="VARCHAR" property="flowCondition11" />
+    <result column="flow_condition_12" jdbcType="VARCHAR" property="flowCondition12" />
+    <result column="flow_condition_13" jdbcType="VARCHAR" property="flowCondition13" />
+    <result column="flow_condition_14" jdbcType="VARCHAR" property="flowCondition14" />
+    <result column="flow_condition_15" jdbcType="VARCHAR" property="flowCondition15" />
+    <result column="flow_condition_16" jdbcType="VARCHAR" property="flowCondition16" />
+    <result column="flow_condition_17" jdbcType="VARCHAR" property="flowCondition17" />
+    <result column="flow_condition_18" jdbcType="VARCHAR" property="flowCondition18" />
+    <result column="flow_condition_19" jdbcType="VARCHAR" property="flowCondition19" />
+    <result column="flow_condition_20" jdbcType="VARCHAR" property="flowCondition20" />
+    <result column="flow_condition_21" jdbcType="VARCHAR" property="flowCondition21" />
+    <result column="flow_condition_22" jdbcType="VARCHAR" property="flowCondition22" />
+    <result column="flow_condition_23" jdbcType="VARCHAR" property="flowCondition23" />
+    <result column="flow_condition_24" jdbcType="VARCHAR" property="flowCondition24" />
+    <result column="flow_condition_25" jdbcType="VARCHAR" property="flowCondition25" />
+    <result column="flow_condition_26" jdbcType="VARCHAR" property="flowCondition26" />
+    <result column="flow_condition_27" jdbcType="VARCHAR" property="flowCondition27" />
+    <result column="flow_condition_28" jdbcType="VARCHAR" property="flowCondition28" />
+    <result column="flow_condition_29" jdbcType="VARCHAR" property="flowCondition29" />
+    <result column="flow_condition_30" jdbcType="VARCHAR" property="flowCondition30" />
+    <result column="flow_condition_31" jdbcType="VARCHAR" property="flowCondition31" />
+    <result column="flow_condition_32" jdbcType="VARCHAR" property="flowCondition32" />
+    <result column="flow_condition_33" jdbcType="VARCHAR" property="flowCondition33" />
+    <result column="flow_condition_34" jdbcType="VARCHAR" property="flowCondition34" />
+    <result column="flow_condition_35" jdbcType="VARCHAR" property="flowCondition35" />
+    <result column="flow_condition_36" jdbcType="VARCHAR" property="flowCondition36" />
+    <result column="flow_condition_37" jdbcType="VARCHAR" property="flowCondition37" />
+    <result column="flow_condition_38" jdbcType="VARCHAR" property="flowCondition38" />
+    <result column="flow_condition_39" jdbcType="VARCHAR" property="flowCondition39" />
+    <result column="flow_condition_40" jdbcType="VARCHAR" property="flowCondition40" />
+    <result column="flow_condition_41" jdbcType="VARCHAR" property="flowCondition41" />
+    <result column="flow_condition_42" jdbcType="VARCHAR" property="flowCondition42" />
+    <result column="flow_condition_43" jdbcType="VARCHAR" property="flowCondition43" />
+    <result column="flow_condition_44" jdbcType="VARCHAR" property="flowCondition44" />
+    <result column="flow_condition_45" jdbcType="VARCHAR" property="flowCondition45" />
+    <result column="flow_condition_46" jdbcType="VARCHAR" property="flowCondition46" />
+    <result column="flow_condition_47" jdbcType="VARCHAR" property="flowCondition47" />
+    <result column="flow_condition_48" jdbcType="VARCHAR" property="flowCondition48" />
+    <result column="flow_condition_49" jdbcType="VARCHAR" property="flowCondition49" />
+    <result column="flow_condition_50" jdbcType="VARCHAR" property="flowCondition50" />
+    <result column="rule_type" jdbcType="VARCHAR" property="ruleType" />
+    <result column="question_category" jdbcType="VARCHAR" property="questionCategory" />
+    <result column="normal_question" jdbcType="VARCHAR" property="normalQuestion" />
+    <result column="next_subflow_id" jdbcType="VARCHAR" property="nextSubflowId" />
+    <result column="next_node_id" jdbcType="VARCHAR" property="nextNodeId" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.robot.pojo.FlowRuleT">
+    <result column="rule_response" jdbcType="LONGVARCHAR" property="ruleResponse" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, subflow_id, node_id, node_name, node_type, above_node_id, flow_condition_1, flow_condition_2, 
+    flow_condition_3, flow_condition_4, flow_condition_5, flow_condition_6, flow_condition_7, 
+    flow_condition_8, flow_condition_9, flow_condition_10, flow_condition_11, flow_condition_12, 
+    flow_condition_13, flow_condition_14, flow_condition_15, flow_condition_16, flow_condition_17, 
+    flow_condition_18, flow_condition_19, flow_condition_20, flow_condition_21, flow_condition_22, 
+    flow_condition_23, flow_condition_24, flow_condition_25, flow_condition_26, flow_condition_27, 
+    flow_condition_28, flow_condition_29, flow_condition_30, flow_condition_31, flow_condition_32, 
+    flow_condition_33, flow_condition_34, flow_condition_35, flow_condition_36, flow_condition_37, 
+    flow_condition_38, flow_condition_39, flow_condition_40, flow_condition_41, flow_condition_42, 
+    flow_condition_43, flow_condition_44, flow_condition_45, flow_condition_46, flow_condition_47, 
+    flow_condition_48, flow_condition_49, flow_condition_50, rule_type, question_category, 
+    normal_question, next_subflow_id, next_node_id, city_code, create_by, create_time, 
+    update_by, update_time, remove
+  </sql>
+  <sql id="Blob_Column_List">
+    rule_response
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.robot.pojo.FlowRuleTExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from flow_rule_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.robot.pojo.FlowRuleTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flow_rule_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.FlowRuleTExample">
+    delete from flow_rule_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.FlowRuleT">
+    insert into flow_rule_t (id, subflow_id, node_id, 
+      node_name, node_type, above_node_id, 
+      flow_condition_1, flow_condition_2, flow_condition_3, 
+      flow_condition_4, flow_condition_5, flow_condition_6, 
+      flow_condition_7, flow_condition_8, flow_condition_9, 
+      flow_condition_10, flow_condition_11, flow_condition_12, 
+      flow_condition_13, flow_condition_14, flow_condition_15, 
+      flow_condition_16, flow_condition_17, flow_condition_18, 
+      flow_condition_19, flow_condition_20, flow_condition_21, 
+      flow_condition_22, flow_condition_23, flow_condition_24, 
+      flow_condition_25, flow_condition_26, flow_condition_27, 
+      flow_condition_28, flow_condition_29, flow_condition_30, 
+      flow_condition_31, flow_condition_32, flow_condition_33, 
+      flow_condition_34, flow_condition_35, flow_condition_36, 
+      flow_condition_37, flow_condition_38, flow_condition_39, 
+      flow_condition_40, flow_condition_41, flow_condition_42, 
+      flow_condition_43, flow_condition_44, flow_condition_45, 
+      flow_condition_46, flow_condition_47, flow_condition_48, 
+      flow_condition_49, flow_condition_50, rule_type, 
+      question_category, normal_question, next_subflow_id, 
+      next_node_id, city_code, create_by, 
+      create_time, update_by, update_time, 
+      remove, rule_response)
+    values (#{id,jdbcType=DECIMAL}, #{subflowId,jdbcType=DECIMAL}, #{nodeId,jdbcType=VARCHAR}, 
+      #{nodeName,jdbcType=VARCHAR}, #{nodeType,jdbcType=VARCHAR}, #{aboveNodeId,jdbcType=VARCHAR}, 
+      #{flowCondition1,jdbcType=VARCHAR}, #{flowCondition2,jdbcType=VARCHAR}, #{flowCondition3,jdbcType=VARCHAR}, 
+      #{flowCondition4,jdbcType=VARCHAR}, #{flowCondition5,jdbcType=VARCHAR}, #{flowCondition6,jdbcType=VARCHAR}, 
+      #{flowCondition7,jdbcType=VARCHAR}, #{flowCondition8,jdbcType=VARCHAR}, #{flowCondition9,jdbcType=VARCHAR}, 
+      #{flowCondition10,jdbcType=VARCHAR}, #{flowCondition11,jdbcType=VARCHAR}, #{flowCondition12,jdbcType=VARCHAR}, 
+      #{flowCondition13,jdbcType=VARCHAR}, #{flowCondition14,jdbcType=VARCHAR}, #{flowCondition15,jdbcType=VARCHAR}, 
+      #{flowCondition16,jdbcType=VARCHAR}, #{flowCondition17,jdbcType=VARCHAR}, #{flowCondition18,jdbcType=VARCHAR}, 
+      #{flowCondition19,jdbcType=VARCHAR}, #{flowCondition20,jdbcType=VARCHAR}, #{flowCondition21,jdbcType=VARCHAR}, 
+      #{flowCondition22,jdbcType=VARCHAR}, #{flowCondition23,jdbcType=VARCHAR}, #{flowCondition24,jdbcType=VARCHAR}, 
+      #{flowCondition25,jdbcType=VARCHAR}, #{flowCondition26,jdbcType=VARCHAR}, #{flowCondition27,jdbcType=VARCHAR}, 
+      #{flowCondition28,jdbcType=VARCHAR}, #{flowCondition29,jdbcType=VARCHAR}, #{flowCondition30,jdbcType=VARCHAR}, 
+      #{flowCondition31,jdbcType=VARCHAR}, #{flowCondition32,jdbcType=VARCHAR}, #{flowCondition33,jdbcType=VARCHAR}, 
+      #{flowCondition34,jdbcType=VARCHAR}, #{flowCondition35,jdbcType=VARCHAR}, #{flowCondition36,jdbcType=VARCHAR}, 
+      #{flowCondition37,jdbcType=VARCHAR}, #{flowCondition38,jdbcType=VARCHAR}, #{flowCondition39,jdbcType=VARCHAR}, 
+      #{flowCondition40,jdbcType=VARCHAR}, #{flowCondition41,jdbcType=VARCHAR}, #{flowCondition42,jdbcType=VARCHAR}, 
+      #{flowCondition43,jdbcType=VARCHAR}, #{flowCondition44,jdbcType=VARCHAR}, #{flowCondition45,jdbcType=VARCHAR}, 
+      #{flowCondition46,jdbcType=VARCHAR}, #{flowCondition47,jdbcType=VARCHAR}, #{flowCondition48,jdbcType=VARCHAR}, 
+      #{flowCondition49,jdbcType=VARCHAR}, #{flowCondition50,jdbcType=VARCHAR}, #{ruleType,jdbcType=VARCHAR}, 
+      #{questionCategory,jdbcType=VARCHAR}, #{normalQuestion,jdbcType=VARCHAR}, #{nextSubflowId,jdbcType=VARCHAR}, 
+      #{nextNodeId,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{createBy,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remove,jdbcType=BIT}, #{ruleResponse,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.FlowRuleT">
+    insert into flow_rule_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="subflowId != null">
+        subflow_id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="nodeName != null">
+        node_name,
+      </if>
+      <if test="nodeType != null">
+        node_type,
+      </if>
+      <if test="aboveNodeId != null">
+        above_node_id,
+      </if>
+      <if test="flowCondition1 != null">
+        flow_condition_1,
+      </if>
+      <if test="flowCondition2 != null">
+        flow_condition_2,
+      </if>
+      <if test="flowCondition3 != null">
+        flow_condition_3,
+      </if>
+      <if test="flowCondition4 != null">
+        flow_condition_4,
+      </if>
+      <if test="flowCondition5 != null">
+        flow_condition_5,
+      </if>
+      <if test="flowCondition6 != null">
+        flow_condition_6,
+      </if>
+      <if test="flowCondition7 != null">
+        flow_condition_7,
+      </if>
+      <if test="flowCondition8 != null">
+        flow_condition_8,
+      </if>
+      <if test="flowCondition9 != null">
+        flow_condition_9,
+      </if>
+      <if test="flowCondition10 != null">
+        flow_condition_10,
+      </if>
+      <if test="flowCondition11 != null">
+        flow_condition_11,
+      </if>
+      <if test="flowCondition12 != null">
+        flow_condition_12,
+      </if>
+      <if test="flowCondition13 != null">
+        flow_condition_13,
+      </if>
+      <if test="flowCondition14 != null">
+        flow_condition_14,
+      </if>
+      <if test="flowCondition15 != null">
+        flow_condition_15,
+      </if>
+      <if test="flowCondition16 != null">
+        flow_condition_16,
+      </if>
+      <if test="flowCondition17 != null">
+        flow_condition_17,
+      </if>
+      <if test="flowCondition18 != null">
+        flow_condition_18,
+      </if>
+      <if test="flowCondition19 != null">
+        flow_condition_19,
+      </if>
+      <if test="flowCondition20 != null">
+        flow_condition_20,
+      </if>
+      <if test="flowCondition21 != null">
+        flow_condition_21,
+      </if>
+      <if test="flowCondition22 != null">
+        flow_condition_22,
+      </if>
+      <if test="flowCondition23 != null">
+        flow_condition_23,
+      </if>
+      <if test="flowCondition24 != null">
+        flow_condition_24,
+      </if>
+      <if test="flowCondition25 != null">
+        flow_condition_25,
+      </if>
+      <if test="flowCondition26 != null">
+        flow_condition_26,
+      </if>
+      <if test="flowCondition27 != null">
+        flow_condition_27,
+      </if>
+      <if test="flowCondition28 != null">
+        flow_condition_28,
+      </if>
+      <if test="flowCondition29 != null">
+        flow_condition_29,
+      </if>
+      <if test="flowCondition30 != null">
+        flow_condition_30,
+      </if>
+      <if test="flowCondition31 != null">
+        flow_condition_31,
+      </if>
+      <if test="flowCondition32 != null">
+        flow_condition_32,
+      </if>
+      <if test="flowCondition33 != null">
+        flow_condition_33,
+      </if>
+      <if test="flowCondition34 != null">
+        flow_condition_34,
+      </if>
+      <if test="flowCondition35 != null">
+        flow_condition_35,
+      </if>
+      <if test="flowCondition36 != null">
+        flow_condition_36,
+      </if>
+      <if test="flowCondition37 != null">
+        flow_condition_37,
+      </if>
+      <if test="flowCondition38 != null">
+        flow_condition_38,
+      </if>
+      <if test="flowCondition39 != null">
+        flow_condition_39,
+      </if>
+      <if test="flowCondition40 != null">
+        flow_condition_40,
+      </if>
+      <if test="flowCondition41 != null">
+        flow_condition_41,
+      </if>
+      <if test="flowCondition42 != null">
+        flow_condition_42,
+      </if>
+      <if test="flowCondition43 != null">
+        flow_condition_43,
+      </if>
+      <if test="flowCondition44 != null">
+        flow_condition_44,
+      </if>
+      <if test="flowCondition45 != null">
+        flow_condition_45,
+      </if>
+      <if test="flowCondition46 != null">
+        flow_condition_46,
+      </if>
+      <if test="flowCondition47 != null">
+        flow_condition_47,
+      </if>
+      <if test="flowCondition48 != null">
+        flow_condition_48,
+      </if>
+      <if test="flowCondition49 != null">
+        flow_condition_49,
+      </if>
+      <if test="flowCondition50 != null">
+        flow_condition_50,
+      </if>
+      <if test="ruleType != null">
+        rule_type,
+      </if>
+      <if test="questionCategory != null">
+        question_category,
+      </if>
+      <if test="normalQuestion != null">
+        normal_question,
+      </if>
+      <if test="nextSubflowId != null">
+        next_subflow_id,
+      </if>
+      <if test="nextNodeId != null">
+        next_node_id,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+      <if test="ruleResponse != null">
+        rule_response,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="subflowId != null">
+        #{subflowId,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeType != null">
+        #{nodeType,jdbcType=VARCHAR},
+      </if>
+      <if test="aboveNodeId != null">
+        #{aboveNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition1 != null">
+        #{flowCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition2 != null">
+        #{flowCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition3 != null">
+        #{flowCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition4 != null">
+        #{flowCondition4,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition5 != null">
+        #{flowCondition5,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition6 != null">
+        #{flowCondition6,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition7 != null">
+        #{flowCondition7,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition8 != null">
+        #{flowCondition8,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition9 != null">
+        #{flowCondition9,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition10 != null">
+        #{flowCondition10,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition11 != null">
+        #{flowCondition11,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition12 != null">
+        #{flowCondition12,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition13 != null">
+        #{flowCondition13,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition14 != null">
+        #{flowCondition14,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition15 != null">
+        #{flowCondition15,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition16 != null">
+        #{flowCondition16,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition17 != null">
+        #{flowCondition17,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition18 != null">
+        #{flowCondition18,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition19 != null">
+        #{flowCondition19,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition20 != null">
+        #{flowCondition20,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition21 != null">
+        #{flowCondition21,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition22 != null">
+        #{flowCondition22,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition23 != null">
+        #{flowCondition23,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition24 != null">
+        #{flowCondition24,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition25 != null">
+        #{flowCondition25,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition26 != null">
+        #{flowCondition26,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition27 != null">
+        #{flowCondition27,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition28 != null">
+        #{flowCondition28,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition29 != null">
+        #{flowCondition29,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition30 != null">
+        #{flowCondition30,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition31 != null">
+        #{flowCondition31,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition32 != null">
+        #{flowCondition32,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition33 != null">
+        #{flowCondition33,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition34 != null">
+        #{flowCondition34,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition35 != null">
+        #{flowCondition35,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition36 != null">
+        #{flowCondition36,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition37 != null">
+        #{flowCondition37,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition38 != null">
+        #{flowCondition38,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition39 != null">
+        #{flowCondition39,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition40 != null">
+        #{flowCondition40,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition41 != null">
+        #{flowCondition41,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition42 != null">
+        #{flowCondition42,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition43 != null">
+        #{flowCondition43,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition44 != null">
+        #{flowCondition44,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition45 != null">
+        #{flowCondition45,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition46 != null">
+        #{flowCondition46,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition47 != null">
+        #{flowCondition47,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition48 != null">
+        #{flowCondition48,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition49 != null">
+        #{flowCondition49,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCondition50 != null">
+        #{flowCondition50,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null">
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="questionCategory != null">
+        #{questionCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="normalQuestion != null">
+        #{normalQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="nextSubflowId != null">
+        #{nextSubflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="nextNodeId != null">
+        #{nextNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+      <if test="ruleResponse != null">
+        #{ruleResponse,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.FlowRuleTExample" resultType="java.lang.Long">
+    select count(*) from flow_rule_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update flow_rule_t
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subflowId != null">
+        subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nodeId != null">
+        node_id = #{record.nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeName != null">
+        node_name = #{record.nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeType != null">
+        node_type = #{record.nodeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aboveNodeId != null">
+        above_node_id = #{record.aboveNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition1 != null">
+        flow_condition_1 = #{record.flowCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition2 != null">
+        flow_condition_2 = #{record.flowCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition3 != null">
+        flow_condition_3 = #{record.flowCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition4 != null">
+        flow_condition_4 = #{record.flowCondition4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition5 != null">
+        flow_condition_5 = #{record.flowCondition5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition6 != null">
+        flow_condition_6 = #{record.flowCondition6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition7 != null">
+        flow_condition_7 = #{record.flowCondition7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition8 != null">
+        flow_condition_8 = #{record.flowCondition8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition9 != null">
+        flow_condition_9 = #{record.flowCondition9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition10 != null">
+        flow_condition_10 = #{record.flowCondition10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition11 != null">
+        flow_condition_11 = #{record.flowCondition11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition12 != null">
+        flow_condition_12 = #{record.flowCondition12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition13 != null">
+        flow_condition_13 = #{record.flowCondition13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition14 != null">
+        flow_condition_14 = #{record.flowCondition14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition15 != null">
+        flow_condition_15 = #{record.flowCondition15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition16 != null">
+        flow_condition_16 = #{record.flowCondition16,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition17 != null">
+        flow_condition_17 = #{record.flowCondition17,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition18 != null">
+        flow_condition_18 = #{record.flowCondition18,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition19 != null">
+        flow_condition_19 = #{record.flowCondition19,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition20 != null">
+        flow_condition_20 = #{record.flowCondition20,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition21 != null">
+        flow_condition_21 = #{record.flowCondition21,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition22 != null">
+        flow_condition_22 = #{record.flowCondition22,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition23 != null">
+        flow_condition_23 = #{record.flowCondition23,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition24 != null">
+        flow_condition_24 = #{record.flowCondition24,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition25 != null">
+        flow_condition_25 = #{record.flowCondition25,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition26 != null">
+        flow_condition_26 = #{record.flowCondition26,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition27 != null">
+        flow_condition_27 = #{record.flowCondition27,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition28 != null">
+        flow_condition_28 = #{record.flowCondition28,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition29 != null">
+        flow_condition_29 = #{record.flowCondition29,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition30 != null">
+        flow_condition_30 = #{record.flowCondition30,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition31 != null">
+        flow_condition_31 = #{record.flowCondition31,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition32 != null">
+        flow_condition_32 = #{record.flowCondition32,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition33 != null">
+        flow_condition_33 = #{record.flowCondition33,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition34 != null">
+        flow_condition_34 = #{record.flowCondition34,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition35 != null">
+        flow_condition_35 = #{record.flowCondition35,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition36 != null">
+        flow_condition_36 = #{record.flowCondition36,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition37 != null">
+        flow_condition_37 = #{record.flowCondition37,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition38 != null">
+        flow_condition_38 = #{record.flowCondition38,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition39 != null">
+        flow_condition_39 = #{record.flowCondition39,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition40 != null">
+        flow_condition_40 = #{record.flowCondition40,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition41 != null">
+        flow_condition_41 = #{record.flowCondition41,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition42 != null">
+        flow_condition_42 = #{record.flowCondition42,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition43 != null">
+        flow_condition_43 = #{record.flowCondition43,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition44 != null">
+        flow_condition_44 = #{record.flowCondition44,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition45 != null">
+        flow_condition_45 = #{record.flowCondition45,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition46 != null">
+        flow_condition_46 = #{record.flowCondition46,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition47 != null">
+        flow_condition_47 = #{record.flowCondition47,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition48 != null">
+        flow_condition_48 = #{record.flowCondition48,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition49 != null">
+        flow_condition_49 = #{record.flowCondition49,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCondition50 != null">
+        flow_condition_50 = #{record.flowCondition50,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleType != null">
+        rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionCategory != null">
+        question_category = #{record.questionCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.normalQuestion != null">
+        normal_question = #{record.normalQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextSubflowId != null">
+        next_subflow_id = #{record.nextSubflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextNodeId != null">
+        next_node_id = #{record.nextNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+      <if test="record.ruleResponse != null">
+        rule_response = #{record.ruleResponse,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update flow_rule_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      node_id = #{record.nodeId,jdbcType=VARCHAR},
+      node_name = #{record.nodeName,jdbcType=VARCHAR},
+      node_type = #{record.nodeType,jdbcType=VARCHAR},
+      above_node_id = #{record.aboveNodeId,jdbcType=VARCHAR},
+      flow_condition_1 = #{record.flowCondition1,jdbcType=VARCHAR},
+      flow_condition_2 = #{record.flowCondition2,jdbcType=VARCHAR},
+      flow_condition_3 = #{record.flowCondition3,jdbcType=VARCHAR},
+      flow_condition_4 = #{record.flowCondition4,jdbcType=VARCHAR},
+      flow_condition_5 = #{record.flowCondition5,jdbcType=VARCHAR},
+      flow_condition_6 = #{record.flowCondition6,jdbcType=VARCHAR},
+      flow_condition_7 = #{record.flowCondition7,jdbcType=VARCHAR},
+      flow_condition_8 = #{record.flowCondition8,jdbcType=VARCHAR},
+      flow_condition_9 = #{record.flowCondition9,jdbcType=VARCHAR},
+      flow_condition_10 = #{record.flowCondition10,jdbcType=VARCHAR},
+      flow_condition_11 = #{record.flowCondition11,jdbcType=VARCHAR},
+      flow_condition_12 = #{record.flowCondition12,jdbcType=VARCHAR},
+      flow_condition_13 = #{record.flowCondition13,jdbcType=VARCHAR},
+      flow_condition_14 = #{record.flowCondition14,jdbcType=VARCHAR},
+      flow_condition_15 = #{record.flowCondition15,jdbcType=VARCHAR},
+      flow_condition_16 = #{record.flowCondition16,jdbcType=VARCHAR},
+      flow_condition_17 = #{record.flowCondition17,jdbcType=VARCHAR},
+      flow_condition_18 = #{record.flowCondition18,jdbcType=VARCHAR},
+      flow_condition_19 = #{record.flowCondition19,jdbcType=VARCHAR},
+      flow_condition_20 = #{record.flowCondition20,jdbcType=VARCHAR},
+      flow_condition_21 = #{record.flowCondition21,jdbcType=VARCHAR},
+      flow_condition_22 = #{record.flowCondition22,jdbcType=VARCHAR},
+      flow_condition_23 = #{record.flowCondition23,jdbcType=VARCHAR},
+      flow_condition_24 = #{record.flowCondition24,jdbcType=VARCHAR},
+      flow_condition_25 = #{record.flowCondition25,jdbcType=VARCHAR},
+      flow_condition_26 = #{record.flowCondition26,jdbcType=VARCHAR},
+      flow_condition_27 = #{record.flowCondition27,jdbcType=VARCHAR},
+      flow_condition_28 = #{record.flowCondition28,jdbcType=VARCHAR},
+      flow_condition_29 = #{record.flowCondition29,jdbcType=VARCHAR},
+      flow_condition_30 = #{record.flowCondition30,jdbcType=VARCHAR},
+      flow_condition_31 = #{record.flowCondition31,jdbcType=VARCHAR},
+      flow_condition_32 = #{record.flowCondition32,jdbcType=VARCHAR},
+      flow_condition_33 = #{record.flowCondition33,jdbcType=VARCHAR},
+      flow_condition_34 = #{record.flowCondition34,jdbcType=VARCHAR},
+      flow_condition_35 = #{record.flowCondition35,jdbcType=VARCHAR},
+      flow_condition_36 = #{record.flowCondition36,jdbcType=VARCHAR},
+      flow_condition_37 = #{record.flowCondition37,jdbcType=VARCHAR},
+      flow_condition_38 = #{record.flowCondition38,jdbcType=VARCHAR},
+      flow_condition_39 = #{record.flowCondition39,jdbcType=VARCHAR},
+      flow_condition_40 = #{record.flowCondition40,jdbcType=VARCHAR},
+      flow_condition_41 = #{record.flowCondition41,jdbcType=VARCHAR},
+      flow_condition_42 = #{record.flowCondition42,jdbcType=VARCHAR},
+      flow_condition_43 = #{record.flowCondition43,jdbcType=VARCHAR},
+      flow_condition_44 = #{record.flowCondition44,jdbcType=VARCHAR},
+      flow_condition_45 = #{record.flowCondition45,jdbcType=VARCHAR},
+      flow_condition_46 = #{record.flowCondition46,jdbcType=VARCHAR},
+      flow_condition_47 = #{record.flowCondition47,jdbcType=VARCHAR},
+      flow_condition_48 = #{record.flowCondition48,jdbcType=VARCHAR},
+      flow_condition_49 = #{record.flowCondition49,jdbcType=VARCHAR},
+      flow_condition_50 = #{record.flowCondition50,jdbcType=VARCHAR},
+      rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      question_category = #{record.questionCategory,jdbcType=VARCHAR},
+      normal_question = #{record.normalQuestion,jdbcType=VARCHAR},
+      next_subflow_id = #{record.nextSubflowId,jdbcType=VARCHAR},
+      next_node_id = #{record.nextNodeId,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT},
+      rule_response = #{record.ruleResponse,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update flow_rule_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      subflow_id = #{record.subflowId,jdbcType=DECIMAL},
+      node_id = #{record.nodeId,jdbcType=VARCHAR},
+      node_name = #{record.nodeName,jdbcType=VARCHAR},
+      node_type = #{record.nodeType,jdbcType=VARCHAR},
+      above_node_id = #{record.aboveNodeId,jdbcType=VARCHAR},
+      flow_condition_1 = #{record.flowCondition1,jdbcType=VARCHAR},
+      flow_condition_2 = #{record.flowCondition2,jdbcType=VARCHAR},
+      flow_condition_3 = #{record.flowCondition3,jdbcType=VARCHAR},
+      flow_condition_4 = #{record.flowCondition4,jdbcType=VARCHAR},
+      flow_condition_5 = #{record.flowCondition5,jdbcType=VARCHAR},
+      flow_condition_6 = #{record.flowCondition6,jdbcType=VARCHAR},
+      flow_condition_7 = #{record.flowCondition7,jdbcType=VARCHAR},
+      flow_condition_8 = #{record.flowCondition8,jdbcType=VARCHAR},
+      flow_condition_9 = #{record.flowCondition9,jdbcType=VARCHAR},
+      flow_condition_10 = #{record.flowCondition10,jdbcType=VARCHAR},
+      flow_condition_11 = #{record.flowCondition11,jdbcType=VARCHAR},
+      flow_condition_12 = #{record.flowCondition12,jdbcType=VARCHAR},
+      flow_condition_13 = #{record.flowCondition13,jdbcType=VARCHAR},
+      flow_condition_14 = #{record.flowCondition14,jdbcType=VARCHAR},
+      flow_condition_15 = #{record.flowCondition15,jdbcType=VARCHAR},
+      flow_condition_16 = #{record.flowCondition16,jdbcType=VARCHAR},
+      flow_condition_17 = #{record.flowCondition17,jdbcType=VARCHAR},
+      flow_condition_18 = #{record.flowCondition18,jdbcType=VARCHAR},
+      flow_condition_19 = #{record.flowCondition19,jdbcType=VARCHAR},
+      flow_condition_20 = #{record.flowCondition20,jdbcType=VARCHAR},
+      flow_condition_21 = #{record.flowCondition21,jdbcType=VARCHAR},
+      flow_condition_22 = #{record.flowCondition22,jdbcType=VARCHAR},
+      flow_condition_23 = #{record.flowCondition23,jdbcType=VARCHAR},
+      flow_condition_24 = #{record.flowCondition24,jdbcType=VARCHAR},
+      flow_condition_25 = #{record.flowCondition25,jdbcType=VARCHAR},
+      flow_condition_26 = #{record.flowCondition26,jdbcType=VARCHAR},
+      flow_condition_27 = #{record.flowCondition27,jdbcType=VARCHAR},
+      flow_condition_28 = #{record.flowCondition28,jdbcType=VARCHAR},
+      flow_condition_29 = #{record.flowCondition29,jdbcType=VARCHAR},
+      flow_condition_30 = #{record.flowCondition30,jdbcType=VARCHAR},
+      flow_condition_31 = #{record.flowCondition31,jdbcType=VARCHAR},
+      flow_condition_32 = #{record.flowCondition32,jdbcType=VARCHAR},
+      flow_condition_33 = #{record.flowCondition33,jdbcType=VARCHAR},
+      flow_condition_34 = #{record.flowCondition34,jdbcType=VARCHAR},
+      flow_condition_35 = #{record.flowCondition35,jdbcType=VARCHAR},
+      flow_condition_36 = #{record.flowCondition36,jdbcType=VARCHAR},
+      flow_condition_37 = #{record.flowCondition37,jdbcType=VARCHAR},
+      flow_condition_38 = #{record.flowCondition38,jdbcType=VARCHAR},
+      flow_condition_39 = #{record.flowCondition39,jdbcType=VARCHAR},
+      flow_condition_40 = #{record.flowCondition40,jdbcType=VARCHAR},
+      flow_condition_41 = #{record.flowCondition41,jdbcType=VARCHAR},
+      flow_condition_42 = #{record.flowCondition42,jdbcType=VARCHAR},
+      flow_condition_43 = #{record.flowCondition43,jdbcType=VARCHAR},
+      flow_condition_44 = #{record.flowCondition44,jdbcType=VARCHAR},
+      flow_condition_45 = #{record.flowCondition45,jdbcType=VARCHAR},
+      flow_condition_46 = #{record.flowCondition46,jdbcType=VARCHAR},
+      flow_condition_47 = #{record.flowCondition47,jdbcType=VARCHAR},
+      flow_condition_48 = #{record.flowCondition48,jdbcType=VARCHAR},
+      flow_condition_49 = #{record.flowCondition49,jdbcType=VARCHAR},
+      flow_condition_50 = #{record.flowCondition50,jdbcType=VARCHAR},
+      rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      question_category = #{record.questionCategory,jdbcType=VARCHAR},
+      normal_question = #{record.normalQuestion,jdbcType=VARCHAR},
+      next_subflow_id = #{record.nextSubflowId,jdbcType=VARCHAR},
+      next_node_id = #{record.nextNodeId,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.QuestionCentralTMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.QuestionCentralT">
+    <result column="id" jdbcType="DECIMAL" property="id" />
+    <result column="question_category_id" jdbcType="DECIMAL" property="questionCategoryId" />
+    <result column="central_question_name" jdbcType="VARCHAR" property="centralQuestionName" />
+    <result column="central_question_abstract" jdbcType="VARCHAR" property="centralQuestionAbstract" />
+    <result column="enabled_status" jdbcType="BIT" property="enabledStatus" />
+    <result column="valid_status" jdbcType="BIT" property="validStatus" />
+    <result column="valid_from_date" jdbcType="DATE" property="validFromDate" />
+    <result column="valid_to_date" jdbcType="DATE" property="validToDate" />
+    <result column="root_category" jdbcType="VARCHAR" property="rootCategory" />
+    <result column="application_id" jdbcType="INTEGER" property="applicationId" />
+    <result column="application_code" jdbcType="VARCHAR" property="applicationCode" />
+    <result column="channel_code" jdbcType="VARCHAR" property="channelCode" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, question_category_id, central_question_name, central_question_abstract, enabled_status, 
+    valid_status, valid_from_date, valid_to_date, root_category, application_id, application_code, 
+    channel_code, city_code, create_by, create_time, update_by, update_time, remove
+  </sql>
+  <select id="selectByExample" parameterType="com.robot.pojo.QuestionCentralTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_central_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.QuestionCentralTExample">
+    delete from question_central_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.QuestionCentralT">
+    insert into question_central_t (id, question_category_id, central_question_name, 
+      central_question_abstract, enabled_status, valid_status, 
+      valid_from_date, valid_to_date, root_category, 
+      application_id, application_code, channel_code, 
+      city_code, create_by, create_time, 
+      update_by, update_time, remove
+      )
+    values (#{id,jdbcType=DECIMAL}, #{questionCategoryId,jdbcType=DECIMAL}, #{centralQuestionName,jdbcType=VARCHAR}, 
+      #{centralQuestionAbstract,jdbcType=VARCHAR}, #{enabledStatus,jdbcType=BIT}, #{validStatus,jdbcType=BIT}, 
+      #{validFromDate,jdbcType=DATE}, #{validToDate,jdbcType=DATE}, #{rootCategory,jdbcType=VARCHAR}, 
+      #{applicationId,jdbcType=INTEGER}, #{applicationCode,jdbcType=VARCHAR}, #{channelCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{createBy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{remove,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.QuestionCentralT">
+    insert into question_central_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="questionCategoryId != null">
+        question_category_id,
+      </if>
+      <if test="centralQuestionName != null">
+        central_question_name,
+      </if>
+      <if test="centralQuestionAbstract != null">
+        central_question_abstract,
+      </if>
+      <if test="enabledStatus != null">
+        enabled_status,
+      </if>
+      <if test="validStatus != null">
+        valid_status,
+      </if>
+      <if test="validFromDate != null">
+        valid_from_date,
+      </if>
+      <if test="validToDate != null">
+        valid_to_date,
+      </if>
+      <if test="rootCategory != null">
+        root_category,
+      </if>
+      <if test="applicationId != null">
+        application_id,
+      </if>
+      <if test="applicationCode != null">
+        application_code,
+      </if>
+      <if test="channelCode != null">
+        channel_code,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="questionCategoryId != null">
+        #{questionCategoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="centralQuestionName != null">
+        #{centralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="centralQuestionAbstract != null">
+        #{centralQuestionAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="enabledStatus != null">
+        #{enabledStatus,jdbcType=BIT},
+      </if>
+      <if test="validStatus != null">
+        #{validStatus,jdbcType=BIT},
+      </if>
+      <if test="validFromDate != null">
+        #{validFromDate,jdbcType=DATE},
+      </if>
+      <if test="validToDate != null">
+        #{validToDate,jdbcType=DATE},
+      </if>
+      <if test="rootCategory != null">
+        #{rootCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null">
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.QuestionCentralTExample" resultType="java.lang.Long">
+    select count(*) from question_central_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update question_central_t
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.questionCategoryId != null">
+        question_category_id = #{record.questionCategoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.centralQuestionName != null">
+        central_question_name = #{record.centralQuestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centralQuestionAbstract != null">
+        central_question_abstract = #{record.centralQuestionAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enabledStatus != null">
+        enabled_status = #{record.enabledStatus,jdbcType=BIT},
+      </if>
+      <if test="record.validStatus != null">
+        valid_status = #{record.validStatus,jdbcType=BIT},
+      </if>
+      <if test="record.validFromDate != null">
+        valid_from_date = #{record.validFromDate,jdbcType=DATE},
+      </if>
+      <if test="record.validToDate != null">
+        valid_to_date = #{record.validToDate,jdbcType=DATE},
+      </if>
+      <if test="record.rootCategory != null">
+        root_category = #{record.rootCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationId != null">
+        application_id = #{record.applicationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicationCode != null">
+        application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelCode != null">
+        channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update question_central_t
+    set id = #{record.id,jdbcType=DECIMAL},
+      question_category_id = #{record.questionCategoryId,jdbcType=DECIMAL},
+      central_question_name = #{record.centralQuestionName,jdbcType=VARCHAR},
+      central_question_abstract = #{record.centralQuestionAbstract,jdbcType=VARCHAR},
+      enabled_status = #{record.enabledStatus,jdbcType=BIT},
+      valid_status = #{record.validStatus,jdbcType=BIT},
+      valid_from_date = #{record.validFromDate,jdbcType=DATE},
+      valid_to_date = #{record.validToDate,jdbcType=DATE},
+      root_category = #{record.rootCategory,jdbcType=VARCHAR},
+      application_id = #{record.applicationId,jdbcType=INTEGER},
+      application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

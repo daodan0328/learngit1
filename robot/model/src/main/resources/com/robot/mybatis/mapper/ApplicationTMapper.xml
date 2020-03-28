@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robot.mybatis.mapper.ApplicationTMapper">
+  <resultMap id="BaseResultMap" type="com.robot.pojo.ApplicationT">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="application_name" jdbcType="VARCHAR" property="applicationName" />
+    <result column="application_code" jdbcType="VARCHAR" property="applicationCode" />
+    <result column="company_id" jdbcType="DECIMAL" property="companyId" />
+    <result column="industry_id" jdbcType="DECIMAL" property="industryId" />
+    <result column="defult_status" jdbcType="BIT" property="defultStatus" />
+    <result column="create_by" jdbcType="DECIMAL" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="DECIMAL" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remove" jdbcType="BIT" property="remove" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, application_name, application_code, company_id, industry_id, defult_status, create_by, 
+    create_time, update_by, update_time, remove
+  </sql>
+  <select id="selectByExample" parameterType="com.robot.pojo.ApplicationTExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from application_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.robot.pojo.ApplicationTExample">
+    delete from application_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.robot.pojo.ApplicationT">
+    insert into application_t (id, application_name, application_code, 
+      company_id, industry_id, defult_status, 
+      create_by, create_time, update_by, 
+      update_time, remove)
+    values (#{id,jdbcType=INTEGER}, #{applicationName,jdbcType=VARCHAR}, #{applicationCode,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=DECIMAL}, #{industryId,jdbcType=DECIMAL}, #{defultStatus,jdbcType=BIT}, 
+      #{createBy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=DECIMAL}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remove,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.robot.pojo.ApplicationT">
+    insert into application_t
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applicationName != null">
+        application_name,
+      </if>
+      <if test="applicationCode != null">
+        application_code,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="industryId != null">
+        industry_id,
+      </if>
+      <if test="defultStatus != null">
+        defult_status,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remove != null">
+        remove,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applicationName != null">
+        #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationCode != null">
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="industryId != null">
+        #{industryId,jdbcType=DECIMAL},
+      </if>
+      <if test="defultStatus != null">
+        #{defultStatus,jdbcType=BIT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remove != null">
+        #{remove,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.robot.pojo.ApplicationTExample" resultType="java.lang.Long">
+    select count(*) from application_t
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update application_t
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicationName != null">
+        application_name = #{record.applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationCode != null">
+        application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.industryId != null">
+        industry_id = #{record.industryId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.defultStatus != null">
+        defult_status = #{record.defultStatus,jdbcType=BIT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remove != null">
+        remove = #{record.remove,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update application_t
+    set id = #{record.id,jdbcType=INTEGER},
+      application_name = #{record.applicationName,jdbcType=VARCHAR},
+      application_code = #{record.applicationCode,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=DECIMAL},
+      industry_id = #{record.industryId,jdbcType=DECIMAL},
+      defult_status = #{record.defultStatus,jdbcType=BIT},
+      create_by = #{record.createBy,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=DECIMAL},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remove = #{record.remove,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
